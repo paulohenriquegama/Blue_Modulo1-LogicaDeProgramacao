@@ -34,8 +34,13 @@ somaImposto(taxaImposto,valorVenda)'''
 #Questão 4
 '''def salario(horasTrabalhada):
     x = horasTrabalhada*valorHora
+    he = 0
+
     if horasTrabalhada > 40:
-        x = x + (valorHora*1.5)
+        he = horasTrabalhada - 40
+        he = he * (valorHora*1.5)
+        x = x + he
+        print("O valor da hora extra é: ", he)
     return x
 valorHora = 50
 horasTrabalhada = float(input("Digite a quantidade de horas trabalhada: "))
@@ -70,7 +75,7 @@ nota = float(input("Digite uma nota: "))
 print("Sua nota corresponde a letra: ", convertNota(nota))'''
 
 #Questão 7
-def menor(n1,n2):
+'''def menor(n1,n2):
     if n1>n2:
         return print("O menor numero digitado é: ", n2)
     elif n1<n2:
@@ -81,6 +86,60 @@ def menor(n1,n2):
 n1 = float(input("Digite o primiero número: "))
 n2 = float(input("Digite o segundo número: "))
 
-menor(n1,n2)
+menor(n1,n2)'''
+try:
 
+    def bissexto(ano):
+    
+        if ano%4==0:
+            return 1
+            if ano%100==0:
+                return 0
+                if ano%400==0:
+                    return 1
+        else:
+            return 0
+
+
+    def mesExtenso(data):
+    
+        dia = int(data[0])
+        mes = int(data[1])
+        ano = int(data[2])
+
+        if bissexto(ano) == 1:
+            if mes == 2:
+                if dia <= 0 or dia >29 or mes <1 or mes >12 or ano <1:
+                    return print("Data inválida")
+                else: 
+                    meses = ["Janeiro","Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"] 
+                    print(f'{data[0]} de {meses[mes-1]} de {data[2]}')
+                    
+            else:
+                if dia <= 0 or dia >31 or mes <1 or mes >12 or ano <1:
+                    return print("Data inválida")
+                else: 
+                    meses = ["Janeiro","Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"] 
+                    print(f'{data[0]} de {meses[mes-1]} de {data[2]}')
+        else:
+            if mes == 2:
+                if dia <= 0 or dia >28 or mes <1 or mes >12 or ano <1:
+                    return print("Data inválida")
+                else: 
+                    meses = ["Janeiro","Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"] 
+                    print(f'{data[0]} de {meses[mes-1]} de {data[2]}')
+            else:
+                if dia <= 0 or dia >31 or mes <1 or mes >12 or ano <1:
+                    return print("Data inválida")
+                else: 
+                    meses = ["Janeiro","Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"] 
+                    print(f'{data[0]} de {meses[mes-1]} de {data[2]}')
+                    
+
+    
+
+    data = input("Digite uma data no formato '28/04/1992: " ).split("/")
+    mesExtenso(data)
+except:
+    print("O que foi informado não é uma data!!")
 
