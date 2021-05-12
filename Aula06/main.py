@@ -87,7 +87,7 @@ n1 = float(input("Digite o primiero número: "))
 n2 = float(input("Digite o segundo número: "))
 
 menor(n1,n2)'''
-try:
+'''try:
 
     def bissexto(ano):
     
@@ -141,5 +141,7 @@ try:
     data = input("Digite uma data no formato '28/04/1992: " ).split("/")
     mesExtenso(data)
 except:
-    print("O que foi informado não é uma data!!")
+    print("O que foi informado não é uma data!!")'''
+
+
 
