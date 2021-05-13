@@ -43,7 +43,7 @@ anoNascimento = int(input("Informe o ano de nascimento: "))
 print(voto(anoNascimento))'''
 
 #Questão 5
-def ficha(nome,qtdGols):
+'''def ficha(nome,qtdGols):
     fichaCompleta = [nome,qtdGols]
     return print(f"O nome do jogador é {fichaCompleta[0]} \nEle marcou {fichaCompleta[1]}\n")
 
@@ -54,4 +54,46 @@ try:
 except:
     qtdGols = "\nA quantidade de gols informada é invalida "
 
-ficha(nome,qtdGols)
+ficha(nome,qtdGols)'''
+
+#Projeto: Gastos com viagem
+
+def custo_hotel(noites):
+    custo = noites*140
+    return custo
+
+def custo_aviao(cidade):
+    if cidade in ("SP",'sp'):
+        passagem = 312
+    elif cidade in ("PA",'pa'):
+        passagem = 447
+    elif cidade in ("RC",'rc'):
+        passagem = 831
+    elif cidade in ("MN",'mn'):
+        passagem = 986
+    return passagem
+
+def custo_carro(qtdDias):
+    custo = qtdDias*40
+    if qtdDias >= 7:
+        custo = custo -50
+    elif qtdDias >= 3:
+        custo = custo-20
+    return custo
+
+def custo_total(cidade,qtdDias,gastos_estras):
+    noites = int(input(f"Você irá dormir quantas noites em {cidade}? : "))
+    valorTotal = custo_hotel(noites) + custo_aviao(cidade) + custo_carro(qtdDias)
+    valorTotal = valorTotal + gastos_estras
+    return valorTotal
+
+cidade = input("Digite a cidade de destino, 'SP' para São Paulo, 'PA' para Porto Alegre, 'RC' para Recife ou 'MN' para Manaus: ")
+
+qtdDias = int(input(f"Informe a quantidade de dias da sua viagem para {cidade}: "))
+gastos_estras = float(input("Informe o valor caso tenha tido algum gasto extra, se não digite 0: "))
+
+print(f"O custo para viagem informada é {custo_total(cidade,qtdDias,gastos_estras)}")
+
+
+
+
