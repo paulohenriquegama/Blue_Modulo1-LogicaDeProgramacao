@@ -74,7 +74,7 @@ else:
 
 #Questão 9
 #valor = int(input("Digite um numero de 4 algarismos (entre 1.000 e 9.999"))
-def func(valor):
+'''def func(valor):
     priDezena = valor//100
     segDezena = valor%100
     soma = priDezena + segDezena
@@ -85,7 +85,7 @@ def func(valor):
 
 for cont in range(1000,10000):
     if func(cont) != "false":
-        print(cont)
+        print(cont)'''
         
     
 
