@@ -1,3 +1,17 @@
+#Questão 1
+def menor(n1,n2):
+    if n1>n2:
+        return print(f"{n2} é o menor valor digitado!")
+    elif n1<n2:
+        return print(f"{n1} é o menor valor digitado!")
+    else:
+        return print("Valores idênticos")
+
+n1 = float(input("Digite o primeiro numero: "))
+n2 = float(input("Digite o segundo numero: "))
+
+menor(n1,n2)
+
 #Questão 2
 '''def compara(a,b):
     soma = a+b
@@ -57,7 +71,7 @@ except:
 ficha(nome,qtdGols)'''
 
 #Projeto: Gastos com viagem
-
+'''
 def custo_hotel(noites):
     custo = noites*140
     return custo
@@ -92,7 +106,7 @@ cidade = input("Digite a cidade de destino, 'SP' para São Paulo, 'PA' para Port
 qtdDias = int(input(f"Informe a quantidade de dias da sua viagem para {cidade}: "))
 gastos_estras = float(input("Informe o valor caso tenha tido algum gasto extra, se não digite 0: "))
 
-print(f"O custo para viagem informada é {custo_total(cidade,qtdDias,gastos_estras)}")
+print(f"O custo para viagem informada é {custo_total(cidade,qtdDias,gastos_estras)}")'''
 
 
 
