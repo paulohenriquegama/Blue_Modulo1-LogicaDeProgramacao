@@ -67,37 +67,15 @@ for letra in frase:
         print(letra, end="")'''
 
 
+#Questão 4
 
-singleAccaunt = 0
-marriedAccaunt = 0
-wrongAnswer = 0
+L = [5, 7, 2, 9, 4, 1, 3]
 
-for i in range(3):
-  maritalStatus = input('waths your marital status?[single/married]: ').lower()
-  if (maritalStatus == 'married'):
-    marriedAccaunt+=1
-  elif (maritalStatus == 'single'):
-    singleAccaunt+=1
-  # handling error
-  elif (maritalStatus != 'single' or maritalStatus!= 'married'):
-    print('invalid response, try again...')
-    wrongAnswer +=1
-    newAttempt = [input(f'waths your marital status? [single/married]: ') for i in range(wrongAnswer)]
-    
-    newAttemptMarried = 0
-    newAttemptSingle = 0
-
-    for c in newAttempt: 
-      if ('married' in newAttempt):
-        newAttemptMarried+=1 
-      elif ('single' in newAttempt):
-        newAttemptSingle+=1
-
-    singleAccaunt += newAttemptSingle
-    marriedAccaunt += newAttemptMarried
-
-print() 
-print(f'the number of singles is: {marriedAccaunt}.')
-print(f'the number of married is: {singleAccaunt}.')
-print(f'the wrong answers : {wrongAnswer}')
-
+print("Tamanho = ",len(L))
+print("Maior = ",max(L))
+print("Menor = ",min(L))
+print("Soma = ", sum(L))
+L.sort()
+print("Ordem crescente: ",L)
+L.reverse()
+print("Ordem decrescente: ",L)
