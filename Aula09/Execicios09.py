@@ -73,7 +73,24 @@ else:
     print("Inocente")'''
 
 #Questão 9
-#valor = int(input("Digite um numero de 4 algarismos (entre 1.000 e 9.999"))
+import time
+d1 = 0
+d2 = 0
+d3 = 0
+d4 = 0
+d5 = 0
+d6 = 0
+
+for d1 in range(1,61):
+    for d2 in range(2,60):            
+        for d3 in range(3,59):
+            for d4 in range(4,58):
+                for d5 in range(5,57):
+                    for d6 in range(6,56):
+                            print(d1,d2,d3,d4,d5,d6)
+                            time.sleep(0.1)
+
+#Desafio 1
 '''def func(valor):
     priDezena = valor//100
     segDezena = valor%100
