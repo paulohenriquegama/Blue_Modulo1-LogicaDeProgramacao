@@ -24,7 +24,7 @@ print(dic)'''
 
 #Questão 3
 
-'''opc = 0
+opc = 0
 while opc == 0:
     nome = input("Digite o nome do aluno: ")
     media = float(input("Digite a média: "))
@@ -43,7 +43,7 @@ while opc == 0:
     resp = input("Deseja continuar: s/n? ")
     if resp == 'n':
         opc = 1
-print("Programa finalizado!!")'''
+print("Programa finalizado!!")
 
 #Questão 4
 
@@ -68,7 +68,7 @@ for i,v in enumerate(rank):
 '''
 
 #Questão 5
-import datetime
+'''import datetime
 import operator
 nome = input("Qual seu nome? ")
 anoNasc = int(input("Digite o ano de nascimento: "))
@@ -84,7 +84,7 @@ if carteira != '0':
 
 
 print(f'O Seu nome é {dic["nome"]} atualmente tem {dic["idade"]} anos, você ira se aposentar em {dic["ano_aposentadoria"]}')
-
+'''
 
 
 

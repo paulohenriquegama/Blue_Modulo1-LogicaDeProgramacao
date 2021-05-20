@@ -1,4 +1,4 @@
-opc = 1
+'''opc = 1
 opc1 = 1
 while opc ==1:
     num = 1
@@ -44,6 +44,29 @@ while opc ==1:
                 opc1 = 1
 
 print("Programa finalizado!!")
+'''
+#Questão 1
+'''x = 3
+cont = 0
+num = list()
+altura = list()
+while cont < x:
+    num.append(int(input(f"Digite o número do {cont+1}º aluno: ")))
+    altura.append(float(input(f"Digite a altura do {cont+1}º aluno: ")))
+    cont += 1
     
-            
-    
+dic = dict(zip(num,altura))
+
+print(max(num))
+print(min(num))          
+    '''
+
+#Questão 2
+
+senha = "1a2b"
+resp = ""
+while resp != senha:
+    resp = input("Digite a senha: ")
+    if resp != senha:
+        print("Senha invalida tente novamente!")
+print("Parabéns senha digitada corretamente.")
