@@ -81,9 +81,10 @@ if carteira != '0':
     salario = float(input("Digite o seu salario: "))
     temp_aposentar = 35 - (ano_atual - anoContrato)
     dic = {'nome': nome,'idade':ano_atual-anoNasc,'ano_aposentadoria': temp_aposentar+ano_atual}
-
-
-print(f'O Seu nome é {dic["nome"]} atualmente tem {dic["idade"]} anos, você ira se aposentar em {dic["ano_aposentadoria"]}')
+    print(f'O Seu nome é {dic["nome"]} atualmente tem {dic["idade"]} anos, você ira se aposentar em {dic["ano_aposentadoria"]}')
+else:
+    dic = {'nome': nome,'idade':ano_atual-anoNasc}
+    print(f'O Seu nome é {dic["nome"]} atualmente tem {dic["idade"]} anos, você não possui carteira de trabalho')
 '''
 
 
