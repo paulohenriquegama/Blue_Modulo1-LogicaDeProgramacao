@@ -137,9 +137,6 @@ try:
                     meses = ["Janeiro","Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"] 
                     print(f'{data[0]} de {meses[mes-1]} de {data[2]}')
                     
-
-    
-
     data = input("Digite uma data no formato '28/04/1992: " ).split("/")
     mesExtenso(data)
 except:
