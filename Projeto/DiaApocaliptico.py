@@ -48,8 +48,85 @@ class Relogio:
         if self.horas >=24:
             self.dias += 1
             self.horas = self.horas - 24
-        
-        
+
+class Texto:
+    def __init__(self):
+        self.__texto = ''
+        self.__estilo = "verde"
+        self.__velocidade = 0.02
+    @property
+    def texto(self):
+        return self.__texto
+
+    @texto.setter
+    def texto(self, novo_texto):
+        raise ValueError ("Impossível escrever texto diretamente, tente u outro método.")
+
+    def escreverTexto(self,texto,estilo='vermelho',velocidade = 0.02):
+        self.__texto = texto
+        self.__estilo = estilo
+        self.__velocidade = velocidade
+        if self.__estilo == "vermelho":
+            for i in list(f'\033[1;91m{self.__texto}\033[m'):
+                print(i, end='')
+                sys.stdout.flush()
+                time.sleep(self.__velocidade)
+        elif self.__estilo == 'verde':
+            for i in list(f'\033[1;32m{self.__texto}\033[m'):
+                print(i, end='')
+                sys.stdout.flush()
+                time.sleep(self.__velocidade)
+        elif self.__estilo == 'negrito':
+            for i in list(f'\033[;1m{self.__texto}'):
+                print(i, end='')
+                sys.stdout.flush()
+                time.sleep(self.__velocidade)
+        else:
+            for i in list(self.__texto):
+                print(i, end='')
+                sys.stdout.flush()
+                time.sleep(self.__velocidade)
+
+
+
+
+class Morto:
+    texto = Texto()
+    def __init__(self):
+        self.infectado = True
+        self.vida = False
+
+    def imprimir(self):    
+        frase = '''
+            ███████████████████████████████████████████████████████████████████████████████████████████
+            █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░██
+            █░██╗░░░██╗░█████╗░░█████╗░███████╗░░███╗░░░███╗░█████╗░██████╗░██████╗░███████╗██╗░░░██╗██
+            █░██║░░░██║██╔══██╗██╔══██╗██╔════╝░░████╗░████║██╔══██╗██╔══██╗██╔══██╗██╔════╝██║░░░██║██
+            █░╚██╗░██╔╝██║░░██║██║░░╚═╝█████╗░░░░██╔████╔██║██║░░██║██████╔╝██████╔╝█████╗░░██║░░░██║██
+            █░░╚████╔╝░██║░░██║██║░░██╗██╔══╝░░░░██║╚██╔╝██║██║░░██║██╔══██╗██╔══██╗██╔══╝░░██║░░░██║██
+            █░░░╚██╔╝░░╚█████╔╝╚█████╔╝███████╗░░██║░╚═╝░██║╚█████╔╝██║░░██║██║░░██║███████╗╚██████╔╝██
+            █░░░░╚═╝░░░░╚════╝░░╚════╝░╚══════╝░░╚═╝░░░░░╚═╝░╚════╝░╚═╝░░╚═╝╚═╝░░╚═╝╚══════╝░╚═════╝░██
+            ███████████████████████████████████████████████████████████████████████████████████████████
+            █████████████████████████████████████▀▀▀░░░░░░░▀▀▀█████████████████████████████████████████
+            ██████████████████████████████████▀░░░░░░░░░░░░░░░░░▀██████████████████████████████████████
+            █████████████████████████████████│░░░░░░░░░░░░░░░░░░░│█████████████████████████████████████
+            ████████████████████████████████▌│░░░░░░░░░░░░░░░░░░░│▐████████████████████████████████████
+            ████████████████████████████████░└┐░░░░░░░░░░░░░░░░░┌┘░████████████████████████████████████
+            ████████████████████████████████░░└┐░░░░░░░░░░░░░░░┌┘░░████████████████████████████████████
+            ████████████████████████████████░░┌┘▄▄▄▄▄░░░░░▄▄▄▄▄└┐░░████████████████████████████████████
+            ████████████████████████████████▌░│██████▌░░░▐██████│░▐████████████████████████████████████
+            █████████████████████████████████░│▐███▀▀░░▄░░▀▀███▌│░█████████████████████████████████████
+            ████████████████████████████████▀─┘░░░░░░░▐█▌░░░░░░░└─▀████████████████████████████████████
+            ████████████████████████████████▄░░░▄▄▄▓░░▀█▀░░▓▄▄▄░░░▄████████████████████████████████████
+            ██████████████████████████████████▄─┘██▌░░░░░░░▐██└─▄██████████████████████████████████████
+            ███████████████████████████████████░░▐█─┬┬┬┬┬┬┬─█▌░░███████████████████████████████████████
+            ██████████████████████████████████▌░░░▀┬┼┼┼┼┼┼┼┬▀░░░▐██████████████████████████████████████
+            ███████████████████████████████████▄░░░└┴┴┴┴┴┴┴┘░░░▄███████████████████████████████████████
+            █████████████████████████████████████▄░░░░░░░░░░░▄█████████████████████████████████████████
+            ████████████████████████████████████████▄▄▄▄▄▄▄████████████████████████████████████████████
+        '''
+        texto.escreverTexto(frase,'vermelho',0.01)
+
 
 
 import time
@@ -61,28 +138,28 @@ Loading…
 █▒▒▒▒▒▒▒▒▒
 ''')
 
-time.sleep(2)
+time.sleep(1)
 os.system('cls')
 print('''
 10%
 ███▒▒▒▒▒▒▒
 ''')
 
-time.sleep(2)
+time.sleep(1)
 os.system('cls')
 print('''
 30%
 █████▒▒▒▒▒
 ''')
 
-time.sleep(3)
+time.sleep(1)
 os.system('cls')
 print('''
 50%
 ███████▒▒▒
 ''')
 
-time.sleep(3)
+time.sleep(1)
 os.system('cls')
 print('''
 100%
@@ -90,12 +167,30 @@ print('''
 ''')
 
 os.system('cls')
-frase = "\033[;1mInicio do jogo!!\033[m"
-print(frase.center(150))
+#frase = "\033[;1mInicio do jogo!!\033[m"
+frase = '''
+                        ██╗███╗░░██╗██╗░█████╗░██╗░█████╗░  ██████╗░░█████╗░  ░░░░░██╗░█████╗░░██████╗░░█████╗░
+                        ██║████╗░██║██║██╔══██╗██║██╔══██╗  ██╔══██╗██╔══██╗  ░░░░░██║██╔══██╗██╔════╝░██╔══██╗
+                        ██║██╔██╗██║██║██║░░╚═╝██║██║░░██║  ██║░░██║██║░░██║  ░░░░░██║██║░░██║██║░░██╗░██║░░██║
+                        ██║██║╚████║██║██║░░██╗██║██║░░██║  ██║░░██║██║░░██║  ██╗░░██║██║░░██║██║░░╚██╗██║░░██║
+                        ██║██║░╚███║██║╚█████╔╝██║╚█████╔╝  ██████╔╝╚█████╔╝  ╚█████╔╝╚█████╔╝╚██████╔╝╚█████╔╝
+                        ╚═╝╚═╝░░╚══╝╚═╝░╚════╝░╚═╝░╚════╝░  ╚═════╝░░╚════╝░  ░╚════╝░░╚════╝░░╚═════╝░░╚════╝░
+'''
+
+
+for i in list(frase):
+    print(i, end='')
+    #O stdout só é atualizado quando há nova linha e como nós estamos mandando tudo na mesma é preciso forçar a atualização.
+    sys.stdout.flush()
+    time.sleep(0.001)
+print()
+
 print()
 nome = input("\033[;1mDigite o nome do seu personagem: \033[m")
 p1 = Personagem(nome)   
 relogio = Relogio()
+morto = Morto()
+texto = Texto()
 os.system('cls')
 print(f"\033[;1m{p1.nome} acorda com uma grande explosão, olha no relógio e são {relogio}.\n\033[m")
 p1.dormindo = False
@@ -115,7 +210,8 @@ O que você irá fazer?
        p1.infectado = True
        p1.machucado = True
        p1.vida = False
-       print(f"\nVc se depara com um zumbi, e como não estava preparado ele conseguiu te atingir, vc é contaminado e após 1h morre.\n")
+       frase = f"\nVc se depara com um zumbi, e como não estava preparado ele conseguiu te atingir, vc é contaminado e após 1h morre.\n"
+       texto.escreverTexto(frase)
        relogio.avancaTempo(1)
        time.sleep(2)
        
@@ -123,7 +219,10 @@ O que você irá fazer?
        print()
        print(p1)
        print()
+       morto.imprimir()
        opc = 1
+       
+    
     elif escolha == "2":
         os.system('cls')
         frase = f"\033[1;32m{p1.nome} ligou a TV e os noticiários estão informando que houve uma explosão em um laboratório e um vírus muito perigoso foi disseminado e as pessoas infectadas estão virando zumbis. \033[m"
@@ -147,12 +246,104 @@ O que vc fará agora?
             escolha = input("\033[;1mDigite uma das alternativas acima: \033[m")
             if escolha == "1":
                 os.system('cls')
-                frase = f'{p1.nome} encontrou uma arma para se defender, os zumbis começaram a invadir sua casa após 2hrs de batalha, vc fica cansado e como estava sozinho foi atingido e contaminado e morre após 1hr.'
+                frase = f'{p1.nome} encontrou uma arma para se defender, os zumbis começaram a invadir sua casa após 1hrs de batalha, vc fica cansado e como estava sozinho foi atingido e contaminado e morre após 1hr.'
+                p1.infectado = True
+                p1.machucado = True
+                p1.vida = False
+
                 for i in list(frase):
                     print(i,end= "")
                     sys.stdout.flush()
                     time.sleep(0.05)
                 print()
+                time.sleep(2)
+                relogio.avancaTempo(2)
+                print()
+                print(relogio)
+                print()
+                print(p1)
+                print()
+                opc = 1
+
+            elif escolha == "2":
+                os.system('cls')
+                p1.infectado = True
+                p1.machucado = True
+                p1.vida = False
+                frase = f'\033[1;91m {p1.nome} trancou a porta do seu quarto e ficou escondido embaixo da cama. O número de zumbis crescia a cada instantes. Após 2hrs de tentativa eles conseguiram arrombar a porta e vc não teve como se defender, foi contaminado fica muito ferido e após 1hr morre.\033[m'
+                for i in list(frase):
+                    print(i, end='')
+                    #O stdout só é atualizado quando há nova linha e como nós estamos mandando tudo na mesma é preciso forçar a atualização.
+                    sys.stdout.flush()
+                    time.sleep(0.05)
+                print()    
+                time.sleep(2)
+                relogio.avancaTempo(3)
+                print()
+                print(relogio)
+                print()
+                print(p1)
+                print()
+                opc = 1
+           
+            elif escolha == '3':
+                os.system('cls')
+                frase = f'\033[1;32m {p1.nome} encontrou uma arma pegou alguns mantimentos e fugiu pela janela aproveitando que não tinha nenhum zumbi por perto. Depois de 5h de caminhada em busca de ajuda, ouvi pessoas pedindo ajuda.\033[m'
+                for i in list(frase):
+                    print(i, end='')
+                    #O stdout só é atualizado quando há nova linha e como nós estamos mandando tudo na mesma é preciso forçar a atualização.
+                    sys.stdout.flush()
+                    time.sleep(0.05)
+                print()    
+                time.sleep(2)
+                relogio.avancaTempo(5)
+                print()
+                print(relogio)
+                print()
+                print(p1)
+                print()
+                while opc == 0:
+                    print(f'''\033[;1m
+1 – Vc irá até elas, para tentar ajudá-las.
+2 – Ignora o pedido de ajuda e continua na sua jornada sozinho.
+\033[m
+                    ''')
+                    escolha = input("\033[;1mDigite uma das alternativas acima: \033[m")
+                    if escolha == "1":
+                        os.system('cls')
+                        p1.infectado = True
+                        p1.machucado = True
+                        p1.vida = False
+                        frase = f'\033[1;91m {p1.nome} Vc encontra um grupo de 3 pessoas e se junta a elas em uma batalha contra um grupo de zumbis que não para de crescer, depois de 3hrs de batalha vc e todos os seus amigos são infectados e não resistem a infecção morrendo após 1hr.\033[m'
+                        for i in list(frase):
+                            print(i, end='')
+                            #O stdout só é atualizado quando há nova linha e como nós estamos mandando tudo na mesma é preciso forçar a atualização.
+                            sys.stdout.flush()
+                            time.sleep(0.05)
+                        print()    
+                        time.sleep(2)
+                        relogio.avancaTempo(4)
+                        print()
+                        print(relogio)
+                        print()
+                        print(p1)
+                        print()
+                        opc = 1
+                    elif escolha == '2':
+                        os.system('cls')
+                        print(f"\033[1;32m{p1.nome} ignorou os pedidos de ajuda, pq viu que fora do prédio havia um grupo muito grande de zumbis e que vc não teria chance de entrar.\033[m")
+                        time.sleep(2)
+                        
+                        print(relogio)
+                        print()
+                        print(p1)
+                        print()
+                        frase = '\033[1;91mPassa-se 1hrs e um grupo de zumbis te cercam como vc estava sozinho não consegui resistir e é atingido e infectado.\033[m'
+
+
+
+
+            
     elif escolha == "3":
         os.system('cls')
         p1.infectado = True
