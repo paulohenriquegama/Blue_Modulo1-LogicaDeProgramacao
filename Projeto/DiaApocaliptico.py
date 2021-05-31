@@ -1,10 +1,10 @@
 class Personagem:
-    def __init__(self, nome, dormindo=True, infectado=False, machucado=False, vida=True):
+    def __init__(self, nome, dormindo=True, infectado=False, machucado=False):
         self.nome = nome
         self.dormindo = dormindo
         self.infectado = infectado
         self.machucado = machucado
-        self.vida = vida
+        self.vida = Vida()
 
     def __str__(self):
         # return "Você está " + ("acordado" if self.dormindo else "dormindo")
@@ -32,7 +32,6 @@ class Personagem:
             return f'\033[1;32m {self.nome} está {vida} e {dormindo} {infectado} {machucado} fisicamente.\033[m'
         else:
             return f'\033[1;91m {self.nome} está {vida} {infectado} e {machucado} fisicamente.\033[m'
-
 
 class Relogio:
     def __init__(self):
@@ -90,13 +89,48 @@ class Texto:
                 time.sleep(self.__velocidade)
         print()
 
+class Vida:
+    def __init__(self):
+        self.__vida = True
+
+    def getVida(self):
+        return self.__vida
+    
+    def setVida(self,vida):
+        
+        self.__vida = vida
+        print("Entrou aqui vida é 2 ",self.__vida)
+
+class Fim(Vida):
+    relogio = Relogio()
+    texto = Texto()
+    
+    def __init__(self):
+        self.vida = Vida
+
+    def textoFim(self):
+        print('Esse é o valor de vida', self.vida.getVida())
+        if self.vida.getVida() == True:
+            frase = f'''
+Após 3 dias de muitas batalhas o exército conseguiu eliminar o os zumbis e aqueles que ainda tinham chance foram vacinados e se recuperaram. 
+            '''
+            texto.escreverTexto(frase,'verde')
+            relogio.avancaTempo(72)
+            print(relogio)
+            print()
+            #print(Personagem)
+            frase = f' Parabens você conseguiu vencer o Dia Apocalíptico'
+            texto.escreverTexto (frase,'verde')
+        else:
+            Morto.imprimir
+
 
 class Morto:
     texto = Texto()
 
-    def __init__(self):
+    '''def __init__(self):
         self.infectado = True
-        self.vida = False
+        self.vida = False'''
 
     def imprimir(self):
         frase = '''
@@ -135,6 +169,8 @@ import os, sys
 import pygame
 
 texto = Texto()
+vida1 = Vida()
+
 
 
 os.system('cls')
@@ -196,8 +232,9 @@ print()
 nome = input("\033[;1mDigite o nome do seu personagem: \033[m")
 #pygame.mixer.music.stop()
 p1 = Personagem(nome)
+fim = Fim()
 relogio = Relogio()
-morto = Morto()
+#morto = Morto()
 
 os.system('cls')
 frase = f"\033[;1m{p1.nome} acorda com uma grande explosão, olha no relógio e são {relogio}.\n\033[m"
@@ -225,7 +262,7 @@ O que você irá fazer?
         os.system('cls')
         p1.infectado = True
         p1.machucado = True
-        p1.vida = False
+        #p1.vida = False
         frase = f"\nVc se depara com um zumbi, e como não estava preparado ele conseguiu te atingir, vc é contaminado e após 1h morre.\n"
         texto.escreverTexto(frase)
         relogio.avancaTempo(1)
@@ -235,13 +272,13 @@ O que você irá fazer?
         print()
         print(p1)
         print()
-        morto.imprimir()
+        vida1.setVida(False)
         opc = 1
 
 
     elif escolha == "2":
         os.system('cls')
-        frase = f"\033[1;32m{p1.nome} ligou a TV e os noticiários estão informando que houve uma explosão em um laboratório e um vírus muito perigoso foi disseminado e as pessoas infectadas estão virando zumbis. \033[m"
+        frase = f"{p1.nome} ligou a TV e os noticiários estão informando que houve uma explosão em um laboratório e um vírus muito perigoso foi disseminado e as pessoas infectadas estão virando zumbis."
         texto.escreverTexto(frase, 'verde', 0.03)
 
         while opc == 0:
@@ -329,7 +366,7 @@ O que vc fará agora?
                         p1.infectado = True
                         p1.machucado = True
                         p1.vida = False
-                        frase = f'\033[1;91m {p1.nome} encontra um grupo de 3 pessoas e se junta a elas em uma batalha contra um grupo de zumbis que não para de crescer, depois de 3hrs de batalha vc e todos os seus amigos são infectados e não resistem a infecção morrendo após 1hr.\033[m'
+                        frase = f'{p1.nome} encontra um grupo de 3 pessoas e se junta a elas em uma batalha contra um grupo de zumbis que não para de crescer, depois de 3hrs de batalha vc e todos os seus amigos são infectados e não resistem a infecção morrendo após 1hr.'
                         texto.escreverTexto(frase)
                         time.sleep(2)
                         relogio.avancaTempo(4)
@@ -343,7 +380,7 @@ O que vc fará agora?
                     elif escolha == '2':
                         os.system('cls')
 
-                        frase = f"\033[1;32m{p1.nome} ignorou os pedidos de ajuda, pq viu que fora do prédio havia um grupo muito grande de zumbis e que vc não teria chance de entrar.\033[m"
+                        frase = f"{p1.nome} ignorou os pedidos de ajuda, pq viu que fora do prédio havia um grupo muito grande de zumbis e que vc não teria chance de entrar."
                         time.sleep(2)
                         texto.escreverTexto(frase, 'verde')
 
@@ -351,7 +388,42 @@ O que vc fará agora?
                         print()
                         print(p1)
                         print()
-                        frase = '\033[1;91mPassa-se 1hrs e um grupo de zumbis te cercam como vc estava sozinho não consegui resistir e é atingido e infectado.\033[m'
+                        time.sleep(3)
+                        os.system("cls")
+                        frase = f'{p1.nome} continua caminhando após 2hrs um grupo de zumbis te cercam, como vc estava sozinho não consegui resistir é atingido e infectado.'
+                        texto.escreverTexto(frase)
+                        print()
+                        
+                        relogio.avancaTempo(2)
+                        time.sleep(5)
+                        frase = f'Enquanto {p1.nome} se retorcia no chão com os efeitos do vírus, um grupo do exército te encontra e destrói o grupo de zumbis, passaram se 1hr.'
+                        texto.escreverTexto(frase)
+                        relogio.avancaTempo(1)
+                        p1.infectado = True
+                        p1.machucado = True
+                        p1.dormindo = True
+                        print()
+                        print(relogio)
+                        print()
+                        print(p1)
+                        print()
+                        time.sleep(7)
+                        os.system('cls')
+                        frase = f"Eles já possuíam a vacina, e aplicaram em você, após isso te levam para a base de resistência e você consegui se recuperar após 12hrs."
+                        texto.escreverTexto(frase,'verde')
+                        relogio.avancaTempo(12)
+                        p1.infectado = False
+                        p1.machucado = False
+                        p1.dormindo = False
+                        print()
+                        print(relogio)
+                        print()
+                        print(p1)
+                        print()
+                        time.sleep(10)
+                        opc = 1
+
+
 
 
     elif escolha == "3":
@@ -359,7 +431,7 @@ O que vc fará agora?
         p1.infectado = True
         p1.machucado = True
         p1.vida = False
-        frase = f'\033[1;91m {p1.nome} trancou a porta do seu quarto e ficou escondido embaixo da cama. O número de zumbis crescia a cada instantes. Após 2hrs de tentativa eles conseguiram arrombar a porta e vc não teve como se defender, foi contaminado fica muito ferido e após 1hr morre.\033[m'
+        frase = f'{p1.nome} trancou a porta do seu quarto e ficou escondido embaixo da cama. O número de zumbis crescia a cada instantes. Após 2hrs de tentativa eles conseguiram arrombar a porta e vc não teve como se defender, foi contaminado fica muito ferido e após 1hr morre.'
         pygame.mixer.music.load("Projeto/zombie-attack.wav")
         pygame.mixer.music.play(1)
         time.sleep(1)
@@ -380,4 +452,5 @@ O que vc fará agora?
         print(p1)
         print()
         opc = 1
+fim.textoFim()
 print("Programa Finalizado!!")
