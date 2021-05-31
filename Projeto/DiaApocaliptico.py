@@ -122,19 +122,19 @@ class Morto:
             
         texto.escreverTexto(frase, 'vermelho', 0.01)
 
-class Fim:
+class Fim(Vida):
     relogio = Relogio()
     texto = Texto()
     morto = Morto()
 
     
-    def __init__(self, vida):
-        self.vida = vida
+    def __init__(self):
+        super().__init__()
 
 
     def textoFim(self):
         
-        if self.vida == True:
+        if self.getVida() == True:
             frase = f'''
 Após 3 dias de muitas batalhas o exército conseguiu eliminar o os zumbis e aqueles que ainda tinham chance foram vacinados e se recuperaram. 
             '''
@@ -261,7 +261,9 @@ O que você irá fazer?
         print()
         print(p1)
         print()
-        fim = Fim(False)
+        
+        fim = Fim()
+        fim.setVida(False)
         opc = 1
 
 
