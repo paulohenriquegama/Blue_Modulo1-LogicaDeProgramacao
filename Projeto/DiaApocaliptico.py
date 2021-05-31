@@ -171,7 +171,7 @@ pygame.init()
 pygame.mixer.init()
 pygame.mixer.music.load("Projeto/audio.mp3")
 pygame.mixer.music.play(-1)
-
+pygame.mixer.music.set_volume(0.7)
 
 
 opc = 0
@@ -233,14 +233,14 @@ fim = Fim()
 os.system('cls')
 frase = f"\033[;1m{p1.nome} acorda com uma grande explosão, olha no relógio e são {relogio}.\n\033[m"
 p1.dormindo = False
-pygame.mixer.music.load("Projeto/explosao.mp3")
-pygame.mixer.music.play()
+pygame.mixer.init() 
+pygame.mixer.pre_init() 
+pygame.init()
+sounds = [] 
+sounds.append(pygame.mixer.Sound('Projeto/explosao.mp3'))
+for sound in sounds: 
+    sound.play()
 texto.escreverTexto(frase, 'negrito', 0.03)
-
-
-#pygame.mixer.music.stop()
-pygame.mixer.music.load("Projeto/audio.mp3")
-pygame.mixer.music.play(-1)
 
 while opc == 0:
 
@@ -257,8 +257,13 @@ O que você irá fazer?
         os.system('cls')
         p1.infectado = True
         p1.machucado = True
-        pygame.mixer.music.load("Projeto/zombie-attack.wav")
-        pygame.mixer.music.play(1)
+        
+
+        sounds = []
+        sounds.append(pygame.mixer.Sound('Projeto/zombie-attack.wav'))
+        for sound in sounds: 
+            sound.play()
+        time.sleep(2)
         frase = f"\nVc se depara com um zumbi, e como não estava preparado ele conseguiu te atingir, vc é contaminado e após 1h morre.\n"
         texto.escreverTexto(frase)
         relogio.avancaTempo(1)
@@ -317,7 +322,7 @@ O que vc fará agora?
                 p1.machucado = True
                 
                 frase = f'{p1.nome} trancou a porta do seu quarto e ficou escondido embaixo da cama. O número de zumbis crescia a cada instantes. Após 2hrs de tentativa eles conseguiram arrombar a porta e vc não teve como se defender, foi contaminado fica muito ferido e após 1hr morre.'
-                pygame.mixer.music.load("Projeto/zombie-attack.wav")
+                '''pygame.mixer.music.load("Projeto/zombie-attack.wav")
                 pygame.mixer.music.play(1)
                 time.sleep(1)
                 pygame.mixer.music.stop()
@@ -325,7 +330,21 @@ O que vc fará agora?
                 pygame.mixer.music.play(2)
                 time.sleep(5)
                 pygame.mixer.music.load("Projeto/zombie-attack.wav")
-                pygame.mixer.music.play(2)
+                pygame.mixer.music.play(2)'''
+
+                pygame.mixer.init() 
+                pygame.mixer.pre_init(44100, -16) 
+                pygame.init()
+                sounds = [] 
+                sounds.append(pygame.mixer.Sound('Projeto/zombie-attack.wav')) 
+                sounds.append(pygame.mixer.Sound('Projeto/arrombamento.wav')) 
+                
+                for sound in sounds: 
+                    sound.play()
+
+
+
+
                 texto.escreverTexto(frase)
                 time.sleep(2)
                 relogio.avancaTempo(3)
@@ -341,13 +360,16 @@ O que vc fará agora?
             #Caminho 2->3 essa opção da seguimento ao jogo
             elif escolha == '3':
                 os.system('cls')
-                frase = f'{p1.nome} encontrou uma arma pegou alguns mantimentos e fugiu pela janela aproveitando que não tinha nenhum zumbi por perto. Depois de 5h de caminhada em busca de ajuda, ouvi pessoas pedindo ajuda.'
+                frase = f'{p1.nome} encontrou uma arma pegou alguns mantimentos e fugiu pela janela aproveitando que não tinha nenhum zumbi por perto. Depois de 5h de caminhada em busca de ajuda, ouvi pessoas gritando pedindo ajuda.'
                 texto.escreverTexto(frase, 'verde')
-                pygame.mixer.music.load("Projeto/gritos.wav")
-                pygame.mixer.music.play()
-                time.sleep(2)
-                pygame.mixer.music.load("Projeto/audio.mp3")
-                pygame.mixer.music.play(-1)
+
+                sounds = []
+                sounds.append(pygame.mixer.Sound('Projeto/gritos.wav'))
+                sounds.append(pygame.mixer.Sound('Projeto/gritos2.mp3')) 
+                sounds.append(pygame.mixer.Sound('Projeto/zombie-attack.wav'))
+                for sound in sounds: 
+                    sound.play()
+
                 relogio.avancaTempo(5)
 
                 p1.vida.setVida(True)
@@ -407,11 +429,15 @@ O que vc fará agora?
                         
                         relogio.avancaTempo(2)
                         time.sleep(3)
-                        pygame.mixer.music.load("Projeto/helicoptero.mp3")
-                        pygame.mixer.music.play() 
-                        time.sleep(5)
-                        pygame.mixer.music.load("Projeto/tiroteio.mp3")
-                        pygame.mixer.music.play() 
+
+                        sounds = []
+                        pygame.mixer.music.set_volume(0.5) 
+                        sounds.append(pygame.mixer.Sound('Projeto/helicoptero.mp3'))
+                        sounds.append(pygame.mixer.Sound('Projeto/tiroteio.mp3')) 
+                        sounds.append(pygame.mixer.Sound('Projeto/zombie-attack.wav'))
+                        for sound in sounds: 
+                            sound.play()
+
                         frase = f'Enquanto {p1.nome} se retorcia no chão com os efeitos do vírus, um grupo do exército te encontra e destrói o grupo de zumbis, passaram se 1hr.'
                         texto.escreverTexto(frase)
                         time.sleep(3)
@@ -452,15 +478,16 @@ O que vc fará agora?
         p1.machucado = True
         
         frase = f'{p1.nome} trancou a porta do seu quarto e ficou escondido embaixo da cama. O número de zumbis crescia a cada instantes. Após 2hrs de tentativa eles conseguiram arrombar a porta e vc não teve como se defender, foi contaminado fica muito ferido e após 1hr morre.'
-        pygame.mixer.music.load("Projeto/zombie-attack.wav")
-        pygame.mixer.music.play(1)
-        time.sleep(1)
-        pygame.mixer.music.stop()
-        pygame.mixer.music.load("Projeto/arrombamento.wav")
-        pygame.mixer.music.play(2)
-        time.sleep(5)
-        pygame.mixer.music.load("Projeto/zombie-attack.wav")
-        pygame.mixer.music.play(2)
+
+        sounds = []
+        pygame.mixer.music.set_volume(0.5) 
+        sounds.append(pygame.mixer.Sound('Projeto/arrombamento.wav'))
+        sounds.append(pygame.mixer.Sound('Projeto/arrombamento.wav')) 
+        sounds.append(pygame.mixer.Sound('Projeto/zombie-attack.wav')) 
+        
+        for sound in sounds: 
+            sound.play()
+
         texto.escreverTexto(frase, 'vermelho', 0.06)
         p1.vida.setVida(False)
         fim.setVida(False)
