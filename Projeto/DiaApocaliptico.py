@@ -41,7 +41,7 @@ class Relogio:
         self.minutos = 0
 
     def __str__(self):
-        return f"{self.horas:02d}:{self.minutos:02d} do dia {self.dias:02d}"
+        return f"\033[;1m{self.horas:02d}:{self.minutos:02d} do dia {self.dias:02d}\033[m"
 
     def avancaTempo(self, horas):
         self.horas += horas
@@ -176,36 +176,42 @@ pygame.mixer.music.set_volume(0.7)
 
 opc = 0
 print('''
-Loading…
-█▒▒▒▒▒▒▒▒▒
+                                        Loading…
+                                        █▒▒▒▒▒▒▒▒▒▒▒
+                                        █▒▒▒▒▒▒▒▒▒▒▒
 ''')
 
 time.sleep(1)
 os.system('cls')
 print('''
-10%
-███▒▒▒▒▒▒▒
+                                        10%
+                                        ███▒▒▒▒▒▒▒▒▒
+                                        ███▒▒▒▒▒▒▒▒▒
 ''')
 
 time.sleep(1)
 os.system('cls')
 print('''
-30%
-█████▒▒▒▒▒
+                                        30%
+                                        █████▒▒▒▒▒▒▒
+                                        █████▒▒▒▒▒▒▒
 ''')
 
-time.sleep(1)
+time.sleep(1.5)
 os.system('cls')
 print('''
-50%
-███████▒▒▒
+                                        50%
+                                        ███████▒▒▒▒▒
+                                        ███████▒▒▒▒▒
+                                
 ''')
 
-time.sleep(1)
+time.sleep(2)
 os.system('cls')
 print('''
-100%
-██████████
+                                        100%
+                                        ████████████
+                                        ████████████
 ''')
 
 os.system('cls')
