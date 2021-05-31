@@ -7,13 +7,14 @@ class Personagem:
         self.vida = Vida()
 
     def __str__(self):
+        
         # return "Você está " + ("acordado" if self.dormindo else "dormindo")
         if self.dormindo == False:
-            dormindo = "Acordado"
+            dormindo = "acordado"
         else:
             dormindo = "dormindo"
 
-        if self.vida == True:
+        if self.vida.getVida() == True:
             vida = "vivo"
         else:
             vida = "morto"
@@ -24,11 +25,11 @@ class Personagem:
             machucado = " machucado"
 
         if self.infectado == True:
-            infectado = "foi contaminado"
+            infectado = "está contaminado"
         else:
-            infectado = "não foi contaminado"
+            infectado = "não está contaminado"
 
-        if self.vida == True:
+        if self.vida.getVida() == True:
             return f'\033[1;32m {self.nome} está {vida} e {dormindo} {infectado} {machucado} fisicamente.\033[m'
         else:
             return f'\033[1;91m {self.nome} está {vida} {infectado} e {machucado} fisicamente.\033[m'
@@ -45,9 +46,9 @@ class Relogio:
     def avancaTempo(self, horas):
         self.horas += horas
         if self.horas >= 24:
-            self.dias += 1
-            self.horas = self.horas - 24
-
+            self.dias += self.horas // 24
+            self.horas = self.horas % 24
+        
 
 class Texto:
     def __init__(self):
@@ -107,7 +108,10 @@ class Morto:
     texto = Texto()
     print("Entrou na clase Morto")
 
-    def imprimir(self):
+    def __init__(self):
+        super().__init__()
+
+    def textoFim(self):
         frase = '''
             ███████████████████████████████████████████████████████████████████████████████████████████
             █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░██
@@ -122,10 +126,10 @@ class Morto:
             
         texto.escreverTexto(frase, 'vermelho', 0.01)
 
-class Fim(Vida):
+class Fim(Vida,Morto):
     relogio = Relogio()
     texto = Texto()
-    morto = Morto()
+    
 
     
     def __init__(self):
@@ -146,7 +150,8 @@ Após 3 dias de muitas batalhas o exército conseguiu eliminar o os zumbis e aqu
             frase = f' Parabens você conseguiu vencer o Dia Apocalíptico'
             texto.escreverTexto (frase,'verde')
         else:
-            morto.imprimir()
+            Morto.textoFim(self)
+            
             
             
 
@@ -223,6 +228,7 @@ p1 = Personagem(nome)
 
 relogio = Relogio()
 morto = Morto()
+fim = Fim()
 
 os.system('cls')
 frase = f"\033[;1m{p1.nome} acorda com uma grande explosão, olha no relógio e são {relogio}.\n\033[m"
@@ -262,7 +268,7 @@ O que você irá fazer?
         print(p1)
         print()
         
-        fim = Fim()
+        
         fim.setVida(False)
         opc = 1
 
@@ -339,6 +345,8 @@ O que vc fará agora?
                 pygame.mixer.music.load("Projeto/audio.mp3")
                 pygame.mixer.music.play(-1)
                 relogio.avancaTempo(5)
+
+                p1.vida.setVida(True)
                 print()
                 print(relogio)
                 print()
@@ -415,7 +423,7 @@ O que vc fará agora?
                         print(p1)
                         print()
                         time.sleep(10)
-                        fim = Fim(True)
+                        #fim
                         opc = 1
 
 
@@ -425,7 +433,7 @@ O que vc fará agora?
         os.system('cls')
         p1.infectado = True
         p1.machucado = True
-        #p1.vida = False
+        
         frase = f'{p1.nome} trancou a porta do seu quarto e ficou escondido embaixo da cama. O número de zumbis crescia a cada instantes. Após 2hrs de tentativa eles conseguiram arrombar a porta e vc não teve como se defender, foi contaminado fica muito ferido e após 1hr morre.'
         pygame.mixer.music.load("Projeto/zombie-attack.wav")
         pygame.mixer.music.play(1)
@@ -437,7 +445,7 @@ O que vc fará agora?
         pygame.mixer.music.load("Projeto/zombie-attack.wav")
         pygame.mixer.music.play(2)
         texto.escreverTexto(frase, 'vermelho', 0.06)
-        
+        p1.vida.setVida(False)
         print()
         time.sleep(2)
         relogio.avancaTempo(3)
@@ -446,7 +454,6 @@ O que vc fará agora?
         print()
         print(p1)
         print()
-        fim = Fim(False)
         opc = 1
 fim.textoFim()
 print("Programa Finalizado!!")
