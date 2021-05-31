@@ -90,8 +90,8 @@ class Texto:
         print()
 
 class Vida:
-    def __init__(self):
-        self.__vida = True
+    def __init__(self,vida=True):
+        self.__vida = vida
 
     def getVida(self):
         return self.__vida
@@ -99,38 +99,13 @@ class Vida:
     def setVida(self,vida):
         
         self.__vida = vida
-        print("Entrou aqui vida é 2 ",self.__vida)
-
-class Fim(Vida):
-    relogio = Relogio()
-    texto = Texto()
     
-    def __init__(self):
-        self.vida = Vida
 
-    def textoFim(self):
-        print('Esse é o valor de vida', self.vida.getVida())
-        if self.vida.getVida() == True:
-            frase = f'''
-Após 3 dias de muitas batalhas o exército conseguiu eliminar o os zumbis e aqueles que ainda tinham chance foram vacinados e se recuperaram. 
-            '''
-            texto.escreverTexto(frase,'verde')
-            relogio.avancaTempo(72)
-            print(relogio)
-            print()
-            #print(Personagem)
-            frase = f' Parabens você conseguiu vencer o Dia Apocalíptico'
-            texto.escreverTexto (frase,'verde')
-        else:
-            Morto.imprimir
 
 
 class Morto:
     texto = Texto()
-
-    '''def __init__(self):
-        self.infectado = True
-        self.vida = False'''
+    print("Entrou na clase Morto")
 
     def imprimir(self):
         frase = '''
@@ -143,25 +118,37 @@ class Morto:
             █░░░╚██╔╝░░╚█████╔╝╚█████╔╝███████╗░░██║░╚═╝░██║╚█████╔╝██║░░██║██║░░██║███████╗╚██████╔╝██
             █░░░░╚═╝░░░░╚════╝░░╚════╝░╚══════╝░░╚═╝░░░░░╚═╝░╚════╝░╚═╝░░╚═╝╚═╝░░╚═╝╚══════╝░╚═════╝░██
             ███████████████████████████████████████████████████████████████████████████████████████████
-            █████████████████████████████████████▀▀▀░░░░░░░▀▀▀█████████████████████████████████████████
-            ██████████████████████████████████▀░░░░░░░░░░░░░░░░░▀██████████████████████████████████████
-            █████████████████████████████████│░░░░░░░░░░░░░░░░░░░│█████████████████████████████████████
-            ████████████████████████████████▌│░░░░░░░░░░░░░░░░░░░│▐████████████████████████████████████
-            ████████████████████████████████░└┐░░░░░░░░░░░░░░░░░┌┘░████████████████████████████████████
-            ████████████████████████████████░░└┐░░░░░░░░░░░░░░░┌┘░░████████████████████████████████████
-            ████████████████████████████████░░┌┘▄▄▄▄▄░░░░░▄▄▄▄▄└┐░░████████████████████████████████████
-            ████████████████████████████████▌░│██████▌░░░▐██████│░▐████████████████████████████████████
-            █████████████████████████████████░│▐███▀▀░░▄░░▀▀███▌│░█████████████████████████████████████
-            ████████████████████████████████▀─┘░░░░░░░▐█▌░░░░░░░└─▀████████████████████████████████████
-            ████████████████████████████████▄░░░▄▄▄▓░░▀█▀░░▓▄▄▄░░░▄████████████████████████████████████
-            ██████████████████████████████████▄─┘██▌░░░░░░░▐██└─▄██████████████████████████████████████
-            ███████████████████████████████████░░▐█─┬┬┬┬┬┬┬─█▌░░███████████████████████████████████████
-            ██████████████████████████████████▌░░░▀┬┼┼┼┼┼┼┼┬▀░░░▐██████████████████████████████████████
-            ███████████████████████████████████▄░░░└┴┴┴┴┴┴┴┘░░░▄███████████████████████████████████████
-            █████████████████████████████████████▄░░░░░░░░░░░▄█████████████████████████████████████████
-            ████████████████████████████████████████▄▄▄▄▄▄▄████████████████████████████████████████████
-        '''
+            '''
+            
         texto.escreverTexto(frase, 'vermelho', 0.01)
+
+class Fim:
+    relogio = Relogio()
+    texto = Texto()
+    morto = Morto()
+
+    
+    def __init__(self, vida):
+        self.vida = vida
+
+
+    def textoFim(self):
+        
+        if self.vida == True:
+            frase = f'''
+Após 3 dias de muitas batalhas o exército conseguiu eliminar o os zumbis e aqueles que ainda tinham chance foram vacinados e se recuperaram. 
+            '''
+            texto.escreverTexto(frase,'verde')
+            relogio.avancaTempo(72)
+            print(relogio)
+            print()
+            #print(Personagem)
+            frase = f' Parabens você conseguiu vencer o Dia Apocalíptico'
+            texto.escreverTexto (frase,'verde')
+        else:
+            morto.imprimir()
+            
+            
 
 
 import time
@@ -170,6 +157,7 @@ import pygame
 
 texto = Texto()
 vida1 = Vida()
+
 
 
 
@@ -232,9 +220,9 @@ print()
 nome = input("\033[;1mDigite o nome do seu personagem: \033[m")
 #pygame.mixer.music.stop()
 p1 = Personagem(nome)
-fim = Fim()
+
 relogio = Relogio()
-#morto = Morto()
+morto = Morto()
 
 os.system('cls')
 frase = f"\033[;1m{p1.nome} acorda com uma grande explosão, olha no relógio e são {relogio}.\n\033[m"
@@ -258,6 +246,7 @@ O que você irá fazer?
 3 - Fica com tanto medo e procura um lugar para se esconder.
         \033[m''')
     escolha = input("\033[;1mDigite uma das alternativas acima: \033[m")
+    # Primeira opção
     if escolha == "1":
         os.system('cls')
         p1.infectado = True
@@ -272,7 +261,7 @@ O que você irá fazer?
         print()
         print(p1)
         print()
-        vida1.setVida(False)
+        fim = Fim(False)
         opc = 1
 
 
@@ -308,6 +297,7 @@ O que vc fará agora?
                 print()
                 print(p1)
                 print()
+                fim = Fim(False)
                 opc = 1
 
             #Caminho 2->2
@@ -334,6 +324,7 @@ O que vc fará agora?
                 print()
                 print(p1)
                 print()
+                fim = Fim(False)
                 opc = 1
             #Caminho 2->3 essa opção da seguimento ao jogo
             elif escolha == '3':
@@ -375,6 +366,7 @@ O que vc fará agora?
                         print()
                         print(p1)
                         print()
+                        fim = Fim(False)
                         opc = 1
                     #Caminho 2->3->2
                     elif escolha == '2':
@@ -421,6 +413,7 @@ O que vc fará agora?
                         print(p1)
                         print()
                         time.sleep(10)
+                        fim = Fim(True)
                         opc = 1
 
 
@@ -430,7 +423,7 @@ O que vc fará agora?
         os.system('cls')
         p1.infectado = True
         p1.machucado = True
-        p1.vida = False
+        #p1.vida = False
         frase = f'{p1.nome} trancou a porta do seu quarto e ficou escondido embaixo da cama. O número de zumbis crescia a cada instantes. Após 2hrs de tentativa eles conseguiram arrombar a porta e vc não teve como se defender, foi contaminado fica muito ferido e após 1hr morre.'
         pygame.mixer.music.load("Projeto/zombie-attack.wav")
         pygame.mixer.music.play(1)
@@ -451,6 +444,7 @@ O que vc fará agora?
         print()
         print(p1)
         print()
+        fim = Fim(False)
         opc = 1
 fim.textoFim()
 print("Programa Finalizado!!")
