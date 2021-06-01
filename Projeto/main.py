@@ -1,3 +1,11 @@
+import os, sys
+
+dirpath = os.getcwd()
+sys.path.append(dirpath)
+if getattr(sys,"frozen",False):
+    os.chdir(sys._MEIPASS)
+
+
 class Personagem:
     def __init__(self, nome, dormindo=True, infectado=False, machucado=False):
         self.nome = nome
@@ -8,7 +16,6 @@ class Personagem:
 
     def __str__(self):
         
-        # return "Você está " + ("acordado" if self.dormindo else "dormindo")
         if self.dormindo == False:
             dormindo = "acordado"
         else:
@@ -146,7 +153,6 @@ Após 3 dias de muitas batalhas o exército conseguiu eliminar o os zumbis e aqu
             relogio.avancaTempo(72)
             print(relogio)
             print()
-            #print(Personagem)
             frase = f' Parabens você conseguiu vencer o Dia Apocalíptico'
             texto.escreverTexto (frase,'verde')
         else:
@@ -155,15 +161,11 @@ Após 3 dias de muitas batalhas o exército conseguiu eliminar o os zumbis e aqu
             
             
 
-
 import time
-import os, sys
 import pygame
 
 texto = Texto()
 vida1 = Vida()
-
-
 
 
 os.system('cls')
@@ -283,7 +285,7 @@ O que você irá fazer?
         print(p1)
         print()
         opc = 1
-
+    #Segunda opção - Seguimento
     elif escolha == "2":
         os.system('cls')
         frase = f"{p1.nome} ligou a TV e os noticiários estão informando que houve uma explosão em um laboratório e um vírus muito perigoso foi disseminado e as pessoas infectadas estão virando zumbis."
@@ -317,8 +319,7 @@ O que vc fará agora?
                 print(relogio)
                 print()
                 print(p1)
-                print()
-                
+                print()   
                 opc = 1
 
             #Caminho 2->2
@@ -328,28 +329,15 @@ O que vc fará agora?
                 p1.machucado = True
                 
                 frase = f'{p1.nome} trancou a porta do seu quarto e ficou escondido embaixo da cama. O número de zumbis crescia a cada instantes. Após 2hrs de tentativa eles conseguiram arrombar a porta e vc não teve como se defender, foi contaminado fica muito ferido e após 1hr morre.'
-                '''pygame.mixer.music.load("Projeto/zombie-attack.wav")
-                pygame.mixer.music.play(1)
-                time.sleep(1)
-                pygame.mixer.music.stop()
-                pygame.mixer.music.load("Projeto/arrombamento.wav")
-                pygame.mixer.music.play(2)
-                time.sleep(5)
-                pygame.mixer.music.load("Projeto/zombie-attack.wav")
-                pygame.mixer.music.play(2)'''
 
                 pygame.mixer.init() 
                 pygame.mixer.pre_init(44100, -16) 
                 pygame.init()
                 sounds = [] 
                 sounds.append(pygame.mixer.Sound('Projeto/zombie-attack.wav')) 
-                sounds.append(pygame.mixer.Sound('Projeto/arrombamento.wav')) 
-                
+                sounds.append(pygame.mixer.Sound('Projeto/arrombamento.wav'))               
                 for sound in sounds: 
                     sound.play()
-
-
-
 
                 texto.escreverTexto(frase)
                 time.sleep(2)
@@ -361,8 +349,8 @@ O que vc fará agora?
                 print()
                 print(p1)
                 print()
-                
                 opc = 1
+
             #Caminho 2->3 essa opção da seguimento ao jogo
             elif escolha == '3':
                 os.system('cls')
@@ -398,8 +386,12 @@ O que vc fará agora?
                         os.system('cls')
                         p1.infectado = True
                         p1.machucado = True
-                        pygame.mixer.music.load("Projeto/zombie-attack.wav")
-                        pygame.mixer.music.play(1)
+                        sounds = []
+                        sounds.append(pygame.mixer.Sound('Projeto/zombie-attack.wav'))
+                        sounds.append(pygame.mixer.Sound('Projeto/zumbie.wav'))
+                        for sound in sounds: 
+                          sound.play()
+
                         frase = f'{p1.nome} encontra um grupo de 3 pessoas e se junta a elas em uma batalha contra um grupo de zumbis que não para de crescer, depois de 3hrs de batalha vc e todos os seus amigos são infectados e não resistem a infecção morrendo após 1hr.'
                         texto.escreverTexto(frase)
                         time.sleep(2)
@@ -411,7 +403,6 @@ O que vc fará agora?
                         print()
                         print(p1)
                         print()
-                        fim = Fim(False)
                         opc = 1
                     #Caminho 2->3->2
                     elif escolha == '2':
@@ -425,18 +416,19 @@ O que vc fará agora?
                         print()
                         print(p1)
                         print()
-                        time.sleep(3)
+                        time.sleep(5)
                         os.system("cls")
-                        pygame.mixer.music.load("Projeto/zombie-attack.wav")
-                        pygame.mixer.music.play(1)
-                        frase = f'{p1.nome} continua caminhando após 2hrs um grupo de zumbis te cercam, como vc estava sozinho não consegui resistir é atingido e infectado.'
-                        texto.escreverTexto(frase)
-                        print()
-                        
-                        relogio.avancaTempo(2)
-                        time.sleep(3)
 
                         sounds = []
+                        sounds.append(pygame.mixer.Sound('Projeto/zumbie.wav'))
+                        for sound in sounds: 
+                            sound.play()
+
+                        frase = f'{p1.nome} continua caminhando após 2hrs um grupo de zumbis te cercam, como vc estava sozinho não consegui resistir é atingido e infectado.'
+                        texto.escreverTexto(frase)
+                        print()                        
+                        relogio.avancaTempo(2)
+                        time.sleep(3)
                         pygame.mixer.music.set_volume(0.5) 
                         sounds.append(pygame.mixer.Sound('Projeto/helicoptero.mp3'))
                         sounds.append(pygame.mixer.Sound('Projeto/tiroteio.mp3')) 
@@ -474,7 +466,7 @@ O que vc fará agora?
                         print()
                         print(p1)
                         print()
-                        time.sleep(10)
+                        time.sleep(7)
                         #fim
                         opc = 1
 
@@ -490,7 +482,6 @@ O que vc fará agora?
         sounds.append(pygame.mixer.Sound('Projeto/arrombamento.wav'))
         sounds.append(pygame.mixer.Sound('Projeto/arrombamento.wav')) 
         sounds.append(pygame.mixer.Sound('Projeto/zombie-attack.wav')) 
-        
         for sound in sounds: 
             sound.play()
 
@@ -507,4 +498,4 @@ O que vc fará agora?
         print()
         opc = 1
 fim.textoFim()
-print("Programa Finalizado!!")
+print("\033[;1mPrograma Finalizado!!\033[m")
