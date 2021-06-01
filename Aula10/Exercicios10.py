@@ -62,7 +62,7 @@ print(min(num))
     '''
 
 #Questão 2
-
+'''
 senha = "1a2b"
 resp = ""
 while resp != senha:
@@ -70,3 +70,5 @@ while resp != senha:
     if resp != senha:
         print("Senha invalida tente novamente!")
 print("Parabéns senha digitada corretamente.")
+'''
+

@@ -23,7 +23,7 @@ dic = dict(zip(l1,l2))
 print(dic)'''
 
 #Questão 3
-
+'''
 opc = 0
 while opc == 0:
     nome = input("Digite o nome do aluno: ")
@@ -44,7 +44,7 @@ while opc == 0:
     if resp == 'n':
         opc = 1
 print("Programa finalizado!!")
-
+'''
 #Questão 4
 
 '''from os import readlink
@@ -86,6 +86,8 @@ else:
     dic = {'nome': nome,'idade':ano_atual-anoNasc}
     print(f'O Seu nome é {dic["nome"]} atualmente tem {dic["idade"]} anos, você não possui carteira de trabalho')
 '''
+
+# Desafio
 
 
 
