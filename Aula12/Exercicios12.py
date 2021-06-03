@@ -88,10 +88,46 @@ else:
 '''
 
 # Desafio
+opc = 0
+cont = 0
+nome = []
+sexo = []
+idade = []
+pessoas = []
 
 
+while opc == 0:
+    pessoa = {input("Digite o nome "):[sexo,idade]}
+    respSexo = input("Digite o sexo: M/F: ")
+    while respSexo not in ("MmFf"):
+        respSexo = input("Por favor informe 'F' ou 'M': ")
+    sexo.append(respSexo)
+    respIdade = int(input("Digite sua idade: "))
+    idade.append(respIdade)
 
-
-
-
-
+    pessoas.append(pessoa)
+    resp = input("Deseja continuar? s/n: ")
+    while resp not in ("snSN"):
+        resp = input("Por favor digite 's' ou 'n': ")
+    if resp in ("Nn"):
+        opc = 1
+media = sum(idade)/len(pessoas)
+print()
+print("O total de pessoas cadastradas é ", len(pessoas))
+print()
+print("A media da idade das pessoas cadastradas é ", sum(idade)/len(pessoas))
+print()
+print("Lista de Mulheres: ")
+for i in pessoas:
+    for k,v in i.items():
+        if sexo[cont] in "Ff":
+            print(k)
+        cont += 1
+print()
+cont = 0
+print("Pessoas com idade acima de ", media)
+for i in pessoas:
+    for k,v in i.items():
+        if idade[cont] > media:
+            print(f'{k} que tem {idade[cont]} anos de idade')
+        cont += 1
